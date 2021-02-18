@@ -52,6 +52,18 @@ describe Pet, type: :model do
         expect(Pet.application_search("Thor").length).to eq(1)
         expect(Pet.application_search("Sparky").first).to eq(nil)
       end
+
+      it "can return matching name with just a partial string and not case sensitive" do
+        shelter = Shelter.create!(name: 'Pet Rescue', address: '123 Adoption Ln.', city: 'Denver', state: 'CO', zip: '80222')
+        pet1 = shelter.pets.create!(adoptable: false, name: "Fluffy", approximate_age: 3, sex: 'male', description: 'dog')
+        pet2 = shelter.pets.create!(name: "Fluffy", approximate_age: 3, sex: 'male', description: 'dog')
+        pet3 = shelter.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
+        expect(Pet.application_search("or").first.name).to eq(pet3.name)
+        expect(Pet.application_search("THOR").first.name).to eq(pet3.name)
+        expect(Pet.application_search("FlU").first.name).to eq(pet1.name)
+        expect(Pet.application_search("FLUFFY").first.name).to eq(pet1.name)
+        expect(Pet.application_search("FluFFy").length).to eq(2)
+      end
     end
   end
 end

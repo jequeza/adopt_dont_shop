@@ -47,7 +47,7 @@
       <%= form_with url: "/applications/#{@application.id}", local: true, method: :patch do |form| %>
       <%= form.label :description %>
       <%= form.text_area :description, size: "70 x 5", required: true %>
-      <%= form.submit 'Submit' %>
+      <%= form.submit 'Submit_application' %>
       <% end %>
     </article>
   <% end %>
