@@ -7,10 +7,10 @@ RSpec.describe "Admin Applications Show Page" do
     @pet1 = @shelter1.pets.create!(image:"", name: "Thor", description: "dog", approximate_age: 2, sex: "male")
     @pet2 = @shelter1.pets.create!(image:"", name: "Athena", description: "cat", approximate_age: 3, sex: "female")
     @pet3 = @shelter1.pets.create!(image:"", name: "Zeus", description: "dog", approximate_age: 4, sex: "male")
-    @application1 = Application.create!(name: "Peter Smith", address: "123 Main Ave", city: "Denver", state: "CO", zip: 80011, description: "Love pets")
-    @application_pet1 = ApplicationPet.new(pet_id: @pet1.id, application_id: @application1.id)
-    @application_pet2 = ApplicationPet.new(pet_id: @pet2.id, application_id: @application1.id)
-    @application_pet3 = ApplicationPet.new(pet_id: @pet3.id, application_id: @application1.id)
+    @application1 = Application.create!(name: "Peter Smith", address: "123 Main Ave", city: "Denver", state: "CO", zip: 80011, description: "Love pets", status: "Pending")
+    @application_pet1 = ApplicationPet.create!(pet_id: @pet1.id, application_id: @application1.id)
+    @application_pet2 = ApplicationPet.create!(pet_id: @pet2.id, application_id: @application1.id)
+    @application_pet3 = ApplicationPet.create!(pet_id: @pet3.id, application_id: @application1.id)
   end
   describe "As a visitor" do
     describe "I see a link for approving pets for applicaiton" do

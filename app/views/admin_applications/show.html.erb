@@ -1,0 +1,10 @@
+<h1><%= @application.name %></h1>
+
+<section>
+  <h2>Pets requested for Adoption: </h2>
+  <% @application.pets.each do |pet| %>
+    <p>I.D. : <%= pet.id %> Name : <%= pet.name %>
+      <%= link_to "Approve Pet", "/admin/applications/#{pet.id}/edit", method: :patch %>
+    </p>
+  <% end %>
+</section>

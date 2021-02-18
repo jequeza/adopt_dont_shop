@@ -26,4 +26,6 @@ Rails.application.routes.draw do
   get "/applications/:id", to: "applications#show", as: "application_show"
   post '/applications', to: "applications#create"
   patch "/applications/:id", to: "applications#update", as: "applications_update"
+
+  get "/admin/applications/:id", to: "admin_applications#show"
 end
