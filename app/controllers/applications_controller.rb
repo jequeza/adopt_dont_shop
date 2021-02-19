@@ -29,7 +29,6 @@
   def update
     application = Application.find(params[:id])
     application.update({description: params[:description], status: "Pending"})
-    application.save
     redirect_to "/applications/#{application.id}"
   end
 
