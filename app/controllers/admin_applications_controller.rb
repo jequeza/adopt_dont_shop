@@ -4,14 +4,8 @@ class AdminApplicationsController < ApplicationController
   end
 
   def update
-    application_pet = ApplicationPet.find(params[:id])
-    application_pet.update(status: "Approved")
+    application_pet = ApplicationPet.find(params[:application_pet_id])
+    application_pet.update(status: params[:status])
     redirect_to "/admin/applications/#{application_pet.application_id}"
   end
-
-  # def delete
-  #   application_pet = ApplicationPet.find(params[:id])
-  #   application_pet.destroy
-  #   redirect_to /
-  # end
 end
