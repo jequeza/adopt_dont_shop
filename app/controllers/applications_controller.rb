@@ -1,4 +1,4 @@
-class ApplicationsController < ApplicationController
+    class ApplicationsController < ApplicationController
   def show
     if params[:adopt_pet_id]
       @application_pet = ApplicationPet.new(pet_id: params[:adopt_pet_id], application_id: params[:id])
@@ -29,7 +29,6 @@ class ApplicationsController < ApplicationController
   def update
     application = Application.find(params[:id])
     application.update({description: params[:description], status: "Pending"})
-    application.save
     redirect_to "/applications/#{application.id}"
   end
 
