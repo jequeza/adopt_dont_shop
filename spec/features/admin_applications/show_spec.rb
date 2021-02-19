@@ -42,5 +42,22 @@ RSpec.describe "Admin Applications Show Page" do
         end
       end
     end
+    describe "I see a link to reject pets from application" do
+      it "it has a reject link and clicking on it rejects a pet" do
+        visit "admin/applications/#{@application1.id}"
+
+        within("#application-#{@application1.id}") do
+          expect(page).to have_link("Reject Pet")
+        end
+
+        find(".pet-link-reject-#{@pet1.id}").click
+        expect(current_path).to eq("/admin/applications/#{@application1.id}")
+
+        within("#application-#{@application1.id}") do
+          expect(page).to_not have_link(".pet-link-reject-#{@pet1.id}")
+          expect(page).to have_content("Rejected")
+        end
+      end
+    end
   end
 end
